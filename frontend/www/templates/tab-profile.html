@@ -1,0 +1,33 @@
+<ion-view view-title="{{ 'PROFILE_OVERVIEW.PAGE_TITLE' | translate }}">
+    <ion-content class="padding">
+
+        <div class="row">
+            <img ng-show="user.picture" ng-src="data:image/jpeg;base64,{{user.picture}}" class="profile-img">
+            <img ng-show="!user.picture" ng-src="https://s3.amazonaws.com/verihub_profile_pics/placeholder-user.jpg" class="profile-img">
+
+            <div class="col profile-header">
+                <h3 class="profile-title">{{ user.fullName || 'Gebruiker' }}</h3>
+
+                <p ng-show="recipeCount > 1">{{recipeCount}} {{ 'PROFILE_OVERVIEW.MULTIPLE_RECIPES' | translate }}</p>
+                <p ng-show="recipeCount == 1">{{recipeCount}} {{ 'PROFILE_OVERVIEW.ONE_RECIPE' | translate }}</p>
+                <p ng-show="recipeCount == 0">{{ 'PROFILE_OVERVIEW.NO_RECIPES' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!--
+            <br />
+            Deel MakeFood op Facebook<br />
+            <br />
+            Deel MakeFood op Twitter<br />
+            <br />
+            Beoordeel de app in de Play Store<br />
+            <br />-->
+        </div>
+
+        <br /><br />
+
+        <a ui-sref="logout" class="btn btn-primary"><i class="ion-android-exit"></i> {{ 'PROFILE_OVERVIEW.LOGOUT' | translate }}</a><br />
+
+    </ion-content>
+</ion-view>

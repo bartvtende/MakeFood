@@ -1,0 +1,18 @@
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+
+    <!-- Categories tab -->
+    <ion-tab title="{{ 'TABS.CATEGORIES' | translate }}" icon-off="ion-ios-book-outline" icon-on="ion-ios-book" ui-sref="tab.category">
+        <ion-nav-view name="tab-categories"></ion-nav-view>
+    </ion-tab>
+
+    <!-- Recipe tab -->
+    <ion-tab title="{{ 'TABS.RECIPES' | translate }}" icon-off="ion-android-restaurant" icon-on="ion-android-restaurant" ui-sref="tab.recipe">
+        <ion-nav-view name="tab-recipe"></ion-nav-view>
+    </ion-tab>
+
+    <!-- Profile tab -->
+    <ion-tab title="{{ 'TABS.PROFILE' | translate }}" icon-off="ion-person" icon-on="ion-person" ui-sref="tab.profile">
+        <ion-nav-view name="tab-profile"></ion-nav-view>
+    </ion-tab>
+
+</ion-tabs>

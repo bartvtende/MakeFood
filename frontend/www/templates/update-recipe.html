@@ -1,0 +1,115 @@
+<ion-view view-title="{{ 'CREATE_RECIPE.MENU_UPDATE' | translate }} {{recept.name}}">
+    <ion-content class="padding">
+        <div role="form" name="recipeForm" ng-submit="update(recept)" novalidate>
+
+            <img ng-show="recept.photos[0].length == 0" ng-src="http://www.engraversnetwork.com/files/placeholder.jpg" style="width: 100%; height: 200px">
+            <img ng-show="recept.photos[0].length != 0" ng-src="data:image/jpeg;base64,{{recept.photos[0][selectedPhoto]}}" style="width: 100%; height: 200px">
+
+            <a class="btn btn-danger btn-sm pull-right" ng-click="deletePhoto(selectedPhoto)"><i class="ion-android-close"></i></a>
+
+            <img ng-repeat="photo in recept.photos[0] track by $index" ng-src="data:image/jpeg;base64,{{photo}}" style="width: 70px; height: 40px; margin-right:5px; cursor:pointer;" ng-click="selectPhoto($index)">
+
+            <br /><br />
+
+            <a ng-click="takePicture()" class="btn btn-primary"><i class="ion-camera"></i> {{ 'CREATE_RECIPE.TAKE_A_PICTURE' | translate }}</a>
+
+            <br /><br />
+
+            <div ng-model="recept.photo"></div>
+
+            <div class="form-group" ng-class="{ 'has-error' : recipeForm.name.$invalid && !recipeForm.name.$pristine }"></div>
+            <h4>{{ 'CREATE_RECIPE.RECIPE_NAME' | translate }} *</h4>
+            <input type="text" ng-model="recept.name" name="name" class="form-control" placeholder="{{ 'CREATE_RECIPE.RECIPE_NAME_PLACEHOLDER' | translate }}" style="width:100%;" required/>
+
+            <p ng-show="recipeForm.name.$invalid && !recipeForm.name.$pristine" class="help-block text-danger">{{ 'CREATE_RECIPE.RECIPE_NAME_ERROR' | translate }}</p>
+            <br />
+
+            <h4>{{ 'CREATE_RECIPE.RECIPE_DESCRIPTION' | translate }}</h4>
+            <textarea type="text" rows="3" ng-model="recept.description" class="form-control" placeholder="{{ 'CREATE_RECIPE.RECIPE_DESCRIPTION_PLACEHOLDER' | translate }}" style="width:100%;" ></textarea>
+
+            <br />
+
+            <div ng-if="false">
+                <h4>{{ 'CREATE_RECIPE.INGREDIENTS' | translate }}</h4>
+
+                <div ng-repeat="ingredient in recept.ingredients track by $index">
+                    <div class="recipe-row" style="width: 100%">
+                        <input type="text" ng-model="ingredient" class="form-control recipe-input-step" placeholder="{{ 'CREATE_RECIPE.INGREDIENTS_PLACEHOLDER' | translate }}">
+                        <div ng-if="!$last" ng-click="removeIngredient($index)"><i class="ion-close"></i></div>
+                        <div ng-if="$last" ng-click="addIngredient()" ng-disabled="ingredient == ''"><i class="ion-plus"></i></div>
+                    </div>
+                </div>
+
+                <br />
+
+                <h4>{{ 'CREATE_RECIPE.STEPS' | translate }}</h4>
+
+                <div ng-repeat="step in recept.steps track by $index">
+                    <div class="recipe-row">
+                        <input type="text" ng-model="step" class="form-control recipe-input-step" placeholder="{{ 'CREATE_RECIPE.STEPS_PLACEHOLDER' | translate }}">
+                        <div ng-if="!$last" ng-click="removeStep($index)"><i class="ion-close"></i></div>
+                        <div ng-if="$last" ng-click="addStep()" ng-disabled="step == ''"><i class="ion-plus"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <h4>{{ 'CREATE_RECIPE.CATEGORY' | translate }}</h4>
+
+            <select class="form-control recipe-input-category" name="category" ng-model="recept.category" placeholder="{{ 'CREATE_RECIPE.CATEGORY_PLACEHOLDER' | translate }}">
+                <option value="">{{ 'CREATE_RECIPE.CATEGORY_PLACEHOLDER' | translate }}</option>
+                <option value="{{category._id}}" ng-repeat="category in categories">{{category._id}}</option>
+            </select>
+
+            <br />
+            <br />
+
+            <h4>{{ 'CREATE_RECIPE.PERSONS' | translate }}</h4>
+            <div class="recipe-row">
+                <input type="number" name="recept.amountOfPersons" ng-model="recept.amountOfPersons" class="form-control recipe-input" placeholder="{{ 'CREATE_RECIPE.PERSONS_PLACEHOLDER' | translate }}" />&nbsp;&nbsp;{{ 'CREATE_RECIPE.PERSONS_UNIT' | translate }}
+            </div>
+
+            <br />
+            <br />
+
+            <h4 ng-click="showOptions()" style="cursor:pointer;">{{ 'CREATE_RECIPE.OPTIONAL' | translate }} <i class="ion-chevron-down" ng-show="!options"></i><i class="ion-chevron-up" ng-show="options"></i></h4>
+
+            <div ng-show="options">
+                <br />
+
+                <h4>{{ 'CREATE_RECIPE.CALORIES' | translate }}</h4>
+                <div class="recipe-row">
+                    <input type="number" name="recept.calories" ng-model="recept.calories" class="form-control recipe-input" placeholder="{{ 'CREATE_RECIPE.CALORIES_PLACEHOLDER' | translate }}" />&nbsp;&nbsp;kcal
+                </div>
+
+                <br />
+
+                <h4>{{ 'CREATE_RECIPE.PREPARATION_TIME' | translate }}</h4>
+                <div class="recipe-row">
+                    <input type="number" name="time" ng-model="recept.time" class="form-control recipe-input" placeholder="{{ 'CREATE_RECIPE.PREPARATION_TIME_PLACEHOLDER' | translate }}" />
+
+                    <select class="form-control recipe-input-timeunit" name="time_unit" ng-model="recept.time_unit">
+                        <option value="1">{{ 'CREATE_RECIPE.PREPARATION_TIME_MINUTE_UNIT' | translate }}</option>
+                        <option value="2">{{ 'CREATE_RECIPE.PREPARATION_TIME_HOUR_UNIT' | translate }}</option>
+                    </select>
+                </div>
+
+                <br />
+
+                <h4>{{ 'CREATE_RECIPE.DIFFICULTY' | translate }}</h4>
+                <select class="form-control recipe-input" name="difficulty" ng-model="recept.difficulty" placeholder="{{ 'CREATE_RECIPE.DIFFICULTY_PLACEHOLDER' | translate }}">
+                    <option value="">{{ 'CREATE_RECIPE.DIFFICULTY_PLACEHOLDER' | translate }}</option>
+                    <option value="1">{{ 'CREATE_RECIPE.DIFFICULTY_1' | translate }}</option>
+                    <option value="2">{{ 'CREATE_RECIPE.DIFFICULTY_2' | translate }}</option>
+                    <option value="3">{{ 'CREATE_RECIPE.DIFFICULTY_3' | translate }}</option>
+                </select>
+            </div>
+
+            <br />
+
+            <button type="submit" ng-disabled="recipeForm.$invalid" class="btn btn-primary">{{ 'CREATE_RECIPE.CREATE_BUTTON' | translate }}</button>
+
+        </form>
+    </ion-content>
+</ion-view>

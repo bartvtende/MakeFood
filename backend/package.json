@@ -1,0 +1,17 @@
+{
+  "name": "recepto",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.1.0",
+    "body-parser": "^1.12.3",
+    "cors": "^2.6.0",
+    "jwt-simple": "^0.3.0",
+    "moment": "^2.10.2",
+    "mongodb": "^2.0.28",
+    "mongoose": "^4.0.3",
+    "request": "^2.55.0"
+  }
+}

@@ -1,0 +1,16 @@
+<ion-view view-title="{{ 'CATEGORIES_OVERVIEW.CATEGORY_NAME' | translate }}">
+    <ion-content class="padding">
+        <ion-list>
+            <ion-item ng-if="recipes.length == 0">{{ 'CATEGORIES_OVERVIEW.NO_CATEGORIES' | translate }}</ion-item>
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="recipe in recipes track by $index" type="item-text-wrap" ng-click="goToRecipeDetails(recipe._id)">
+                <img ng-src="data:image/jpeg;base64,{{recipe.photos[0][0]}}">
+                <h2>{{recipe.name}}</h2>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+
+                <ion-option-button class="button-assertive" ng-click="remove(recipe._id)">
+                    {{ 'RECIPE_OVERVIEW.REMOVE_BUTTON' | translate }}
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

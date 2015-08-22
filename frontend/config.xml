@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="com.ionicframework.frontend812138" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>MakeFood</name>
+  <description>
+        Recipes app
+    </description>
+  <author email="bartvtende@gmail.com" href="https://bartvantende.nl">
+      Bart van t Ende
+  </author>
+  <content src="index.html"/>
+  <access origin="*"/>
+  <preference name="webviewbounce" value="false"/>
+  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="BackupWebStorage" value="none"/>
+  <preference name="SplashScreen" value="screen"/>
+  <preference name="SplashScreenDelay" value="3000"/>
+  <feature name="StatusBar">
+    <param name="ios-package" value="CDVStatusBar" onload="true"/>
+  </feature>
+  <platform name="android">
+    <icon src="resources/android/icon/android-chrome-36x36.png" density="ldpi"/>
+    <icon src="resources/android/icon/android-chrome-48x48.png" density="mdpi"/>
+    <icon src="resources/android/icon/android-chrome-72x72.png" density="hdpi"/>
+    <icon src="resources/android/icon/android-chrome-96x96.png" density="xhdpi"/>
+  </platform>
+  <allow-navigation href="http://*/*" />
+</widget>

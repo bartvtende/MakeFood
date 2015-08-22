@@ -1,0 +1,59 @@
+<ion-view view-title="{{ 'APP.NAME' | translate }}">
+    <ion-content class="padding">
+
+        <div class="panel-body">
+            <h4 class="text-center"><i class="ion-log-in"></i> {{ 'LOGIN.HEADER_NAME' | translate }}</h4>
+
+            <br /><br />
+
+            <form ng-submit="emailLogin()" novalidate>
+
+                <div class="form-group row large-input">
+                    <span class="ion-email form-control-feedback" style="width:30px;"></span>
+                    <input server-error class="form-control" type="text" name="email" ng-model="user.email" placeholder="{{ 'LOGIN.EMAIL_INPUT' | translate }}" required autofocus>
+                </div>
+
+                <div class="form-group row large-input">
+                    <span class="ion-locked form-control-feedback" style="width:30px;"></span>
+                    <input server-error class="form-control" type="password" name="password" ng-model="user.password" placeholder="{{ 'LOGIN.PASSWORD_INPUT' | translate }}" required>
+                </div>
+
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-block btn-primary">{{ 'LOGIN.LOGIN_BUTTON' | translate }}</button>
+
+                    <br/><br />
+                </div>
+
+                <br />
+
+            </form>
+
+
+            <div class="text-center">
+                <!--
+                <button class="btn btn-block btn-primary" ng-click="facebookLogin()">
+                    <i class="ion-social-facebook"></i> Inloggen met Facebook
+                </button>
+
+                <button class="btn btn-block btn-primary" ng-click="twitterLogin()">
+                    <i class="ion-social-twitter"></i> Inloggen met Twitter
+                </button>
+
+                <button class="btn btn-block btn-primary" ng-click="makeFoodLogin()">
+                    <i class="ion-pizza"></i> Inloggen met MakeFood
+                </button>
+
+                -->
+                <br />
+
+                <p class="text-center text-muted">
+                    {{ 'LOGIN.NO_ACCOUNT_TEXT' | translate }}<a href="#/signup">{{ 'LOGIN.SIGN_UP_TEXT' | translate }}</a>
+                </p>
+            </div>
+
+            <br />
+        </div>
+
+    </ion-content>
+</ion-view>

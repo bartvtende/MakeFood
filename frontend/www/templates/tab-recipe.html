@@ -1,0 +1,26 @@
+<ion-view view-title="{{ 'RECIPE_OVERVIEW.PAGE_TITLE' | translate }}">
+    <ion-nav-buttons side="right">
+        <a class="button" ui-sref="tab.new-recipe">
+            <i class="ion-plus"></i>
+        </a>
+    </ion-nav-buttons>
+  <ion-content>
+    <ion-refresher
+            pulling-text="{{ 'RECIPE_OVERVIEW.REFRESH_TEXT' | translate }}"
+            on-refresh="doRefresh()">
+    </ion-refresher>
+    <ion-list>
+      <ion-item ng-if="recepten.length == 0">{{ 'RECIPE_OVERVIEW.NO_RECIPES_AVAILABLE' | translate }}</ion-item>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="recept in recepten track by $index" type="item-text-wrap" href="#/tab/recipe/{{recept._id}}">
+        <img ng-if="recept.photos[0].length != 0" ng-src="data:image/jpeg;base64,{{recept.photos[0][0]}}">
+        <img ng-if="recept.photos[0].length == 0" ng-src="http://www.jamesbeard.org/sites/default/files/styles/recipe_335x285/public/default_images/chef_placeholder.jpg">
+        <h2>{{recept.name}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(recept._id)">
+          {{ 'RECIPE_OVERVIEW.REMOVE_BUTTON' | translate }}
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

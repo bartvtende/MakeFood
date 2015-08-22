@@ -1,0 +1,31 @@
+<ion-view view-title="{{ 'CATEGORIES_OVERVIEW.PAGE_TITLE' | translate }}">
+    <ion-nav-buttons side="right">
+        <a class="button" ui-sref="tab.new-category ">
+            <i class="ion-plus"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        <ion-refresher
+                pulling-text="{{ 'RECIPE_OVERVIEW.REFRESH_TEXT' | translate }}"
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <ion-list>
+            <ion-item ng-if="categories.length == 0">{{ 'CATEGORIES_OVERVIEW.NO_RESULTS' | translate }}</ion-item>
+            <ion-item ng-repeat="category in categories" href="#/tab/category/{{category._id}}">
+                {{category._id}}
+
+                <span class="item-note">
+                    <div class="row">
+                        <div ng-if="category.count > 1">{{category.count}}&nbsp;{{ 'CATEGORIES_OVERVIEW.MORE_RECIPES' | translate }}</div>
+                        <div ng-if="category.count == 1">{{category.count}}&nbsp;{{ 'CATEGORIES_OVERVIEW.ONE_RECIPE' | translate }}</div>
+                        <div ng-if="category.count == 0">{{ 'CATEGORIES_OVERVIEW.NO_RECIPES' | translate }}</div>
+                    </div>
+                </span>
+
+                <ion-option-button class="button-assertive" ng-click="remove(category._id)">
+                    {{ 'RECIPE_OVERVIEW.REMOVE_BUTTON' | translate }}
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

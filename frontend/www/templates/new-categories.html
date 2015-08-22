@@ -1,0 +1,35 @@
+<ion-view view-title="{{ 'CREATE_CATEGORY.PAGE_TITLE' | translate }}">
+    <ion-content class="padding">
+
+        <div class="bar bar-header item-input-inset">
+            <label class="item-input-wrapper">
+                <i class="icon ion-ios-search placeholder-icon"></i>
+                <input type="text" name="searchKey" ng-model="searchKey" placeholder="{{ 'CREATE_CATEGORY.SEARCH_BUTTON' | translate }}">
+            </label>
+        </div>
+
+        <div class="list list-category">
+
+            <div class="item item-category item-icon-right" ng-repeat="category in availableCategories | filter:searchKey as results">
+                {{category.name}}
+
+                <i class="icon ion-plus" ng-click="addCategory(category.name)" style="cursor: pointer;"></i>
+            </div>
+
+            <div ng-if="results.length == 0">
+                <br />
+                <b>{{ 'CREATE_CATEGORY.ADD_TEXT' | translate }}</b>
+
+                <div class="form-group">
+                    <input type="text" name="searchKey" ng-model="searchKey" class="form-control" />
+
+                    <button class="btn btn-primary" ng-click="addCategory(searchKey)">
+                        <i class="icon ion-plus"></i> {{ 'CREATE_CATEGORY.ADD_BUTTON' | translate }}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </ion-content>
+</ion-view>

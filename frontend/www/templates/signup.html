@@ -1,0 +1,34 @@
+<ion-view view-title="{{ 'APP.NAME' | translate }}">
+    <ion-content class="padding">
+        <div class="panel-body">
+            <h4 class="text-center"><i class="ion-person-add"></i> {{ 'REGISTER.HEADER_NAME' | translate }}</h4>
+
+            <form method="post" ng-submit="signup()" novalidate>
+                <div class="text-center" ng-click="takePicture()">
+                    <img ng-show="!user.picture" ng-src="https://s3.amazonaws.com/verihub_profile_pics/placeholder-user.jpg" class="signup-img img-responsive">
+                    <img ng-show="user.picture" ng-src="data:image/jpeg;base64,{{user.picture}}" class="signup-img img-responsive">
+                </div>
+
+                <br />
+
+                <input type="text" name="email" ng-model="user.email" class="form-control large-input" placeholder="{{ 'REGISTER.EMAIL_INPUT' | translate }}" required autofocus>
+
+                <input type="password" name="password" ng-model="user.password" class="form-control large-input" placeholder="{{ 'REGISTER.PASSWORD_INPUT' | translate }}" required>
+
+                <input type="text" name="fullName" ng-model="user.fullName" class="form-control large-input" placeholder="{{ 'REGISTER.NAME_INPUT' | translate }}" required>
+
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-block btn-primary">{{ 'REGISTER.SIGNUP_BUTTON' | translate }}</button>
+
+                    <br/>
+                    <br/>
+
+                    <p class="text-center text-muted">
+                        {{ 'REGISTER.ALREADY_ACCOUNT_TEXT' | translate }}<a ui-sref="login">{{ 'REGISTER.LOGIN_TEXT' | translate }}</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

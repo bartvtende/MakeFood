@@ -1,0 +1,76 @@
+<ion-view view-title="{{recept.name}}">
+    <ion-nav-buttons side="right">
+        <a class="button" ui-sref="tab.update-recipe({recipeId: recept._id})">
+            <i class="ion-edit"></i>
+        </a>
+    </ion-nav-buttons>
+
+  <ion-content class="padding">
+      <img ng-if="recept.photos[0].length != 0" ng-src="data:image/jpeg;base64,{{recept.photos[0][selectedPhoto]}}" style="width: 100%; height: 150px">
+
+      <img ng-if="recept.photos[0].length > 1" ng-repeat="photo in recept.photos[0] track by $index" ng-src="data:image/jpeg;base64,{{photo}}" style="width: 70px; height: 40px; margin-right:5px; cursor:pointer;" ng-click="selectPhoto($index)">
+
+      <div ng-if="recept.photos[0].length == 0" style="padding-top:10px;"></div>
+
+      <h2>{{recept.name}}</h2>
+
+      <div class="row" class="recipe-icons">
+          <div class="col col-50" ng-if="recept.amountOfPersons">
+              <i class="ion-person-stalker"></i> {{recept.amountOfPersons}} {{ 'CREATE_RECIPE.PERSONS_UNIT' | translate }}
+          </div>
+
+          <div class="col col-50" ng-if="recept.calories">
+              <i class="ion-pizza"></i> {{recept.calories}} kcal
+          </div>
+      </div>
+
+      <div class="row" class="recipe-icons">
+          <div class="col col-50" ng-if="recept.time">
+              <div class="recipe-row">
+                  <i class="ion-clock"></i>&nbsp;{{recept.time}}&nbsp;
+                  <div ng-if="timeUnit == 1">{{ 'CREATE_RECIPE.PREPARATION_TIME_MINUTE_UNIT' | translate }}</div>
+                  <div ng-if="timeUnit == 2">{{ 'CREATE_RECIPE.PREPARATION_TIME_HOUR_UNIT' | translate }}</div>
+              </div>
+          </div>
+
+          <div class="col col-50" ng-if="recept.difficulty">
+              <div class="recipe-row">
+                  <i class="ion-podium"></i>&nbsp;
+                  <div ng-if="recept.difficulty == 1">{{ 'CREATE_RECIPE.DIFFICULTY_1' | translate }}</div>
+                  <div ng-if="recept.difficulty == 2">{{ 'CREATE_RECIPE.DIFFICULTY_2' | translate }}</div>
+                  <div ng-if="recept.difficulty == 3">{{ 'CREATE_RECIPE.DIFFICULTY_3' | translate }}</div>
+              </div>
+          </div>
+      </div>
+
+      <p ng-if="recept.description">
+          {{recept.description}}
+
+          <br />
+      </p>
+
+      <p ng-if="recept.ingredients.length != 0">
+          <small>{{ 'CREATE_RECIPE.INGREDIENTS' | translate }}</small>
+          <br />
+          <li ng-repeat="ingredient in recept.ingredients">{{ingredient.name}}</li>
+
+      </p>
+
+      <p ng-if="recept.steps.length != 0">
+          <small>{{ 'CREATE_RECIPE.STEPS' | translate }}</small>
+          <br />
+          <li ng-repeat="step in recept.steps">{{step.name}}</li>
+
+          <br />
+      </p>
+
+
+      <p ng-if="recept.category">
+          <small>{{ 'CREATE_RECIPE.CATEGORY' | translate }}</small>
+          <br />
+          <a href="#/tab/category/{{recept.category}}">{{recept.category}}</a>
+      </p>
+
+    <button class="btn btn-primary" ng-click="share(recept)"><i class="ion-android-share-alt"></i> {{ 'CREATE_RECIPE.SHARE_THIS_RECIPE' | translate }}</button>
+  </ion-content>
+</ion-view>
