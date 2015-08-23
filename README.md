@@ -1,6 +1,8 @@
 # MakeFood
 Multi-platform app for saving your finest personal recipes
 
+![MakeFood](http://i.imgur.com/KznZk46.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![MakeFood](http://i.imgur.com/u7paXTH.png)
+
 ## Features
 * Easily save your recipes with many customizable options
 * Sort your recipes in categories
